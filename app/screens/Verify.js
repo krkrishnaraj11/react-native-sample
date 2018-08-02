@@ -33,8 +33,6 @@ export default class Verify extends Component{
                             alert(result);
                         })
                     });
-                    console.log(ar[i]);
-                    console.log("login");
                     alert(AsyncStorage.getItem('key'));
                 }
                 if(i == 0){

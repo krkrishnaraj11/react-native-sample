@@ -9,9 +9,11 @@ import Verify from '../screens/Verify';
 import Login from '../screens/Login';
 import Search from '../screens/Search';
 import { Container, Content, Icon, Header, Body } from 'native-base'
+import {AsyncStorage} from 'react-native';
+
+console.log(AsyncStorage.getItem('key'));
 
 const CustomDrawerContentComponent = (props) => (
-
     <Container>
       <Header style={styles.drawerHeader}>
         <Body>
@@ -34,7 +36,9 @@ export const Drawer = DrawerNavigator({
         screen: Search,
         navigationOptions:{
             title: 'Search',
-            headerLeft: <Text onPress={() => navigation.navigate('DrawerToggle')}>DrawerToggle</Text>
+            headerStyle: {
+                backgroundColor: '#ED1E4C'
+            }
         }
     },
     Settings: {
@@ -43,6 +47,7 @@ export const Drawer = DrawerNavigator({
 },
     {
         InitialRouteName: 'Home',
+        drawerWidth: 250,
         drawerPosition: 'left',
         contentComponent: CustomDrawerContentComponent,
         drawerOpenRoute: 'DrawerOpen',
@@ -67,7 +72,7 @@ export const LoggedIn = StackNavigator({
     Drawer: {
         screen: Drawer,
         navigationOptions: {
-            header: null,
+            title: 'Search',
             gesturesEnabled: false
         }
     }

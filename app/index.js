@@ -17,7 +17,7 @@ export default class App extends React.Component {
       console.log('hi');
       var value = AsyncStorage.getItem('key');
       this.state.signedIn = true;
-      console.log(value);
+      // console.log(value);
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
