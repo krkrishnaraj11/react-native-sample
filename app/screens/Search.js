@@ -17,7 +17,7 @@ class Search extends Component {
     super(props);
     this.state = {
       selected2: undefined,
-      selectedIndex: 1
+      selectedIndex: 0
     };
     this.updateIndex = this.updateIndex.bind(this)
   }
@@ -33,7 +33,8 @@ class Search extends Component {
   }
   render() {
       let navigation = this.props.navigation;
-      const buttons = ['Sell', 'Rent'];
+      const buttons1 = ['Sell', 'Rent'];
+      const buttons2 = ['Residential','Commercial'];
       const { selectedIndex } = this.state
     return (
       <Container>
@@ -53,7 +54,13 @@ class Search extends Component {
         <ButtonGroup
           onPress={this.updateIndex}
           selectedIndex={selectedIndex}
-          buttons={buttons}
+          buttons={buttons1}
+          containerStyle={{height: 45}}
+        />
+        <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={selectedIndex}
+          buttons={buttons2}
           containerStyle={{height: 45}}
         />
           <Item picker>
