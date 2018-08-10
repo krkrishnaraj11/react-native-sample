@@ -8,10 +8,11 @@ import { StackNavigator, DrawerNavigator, DrawerItems, SafeAreaView } from 'reac
 import Verify from '../screens/Verify';
 import Login from '../screens/Login';
 import Search from '../screens/Search';
+import Result from '../screens/searchResult';
+import Sample from '../screens/Sample';
 import { Container, Content, Icon, Header, Body } from 'native-base'
 import {AsyncStorage} from 'react-native';
 
-console.log(AsyncStorage.getItem('key'));
 
 const CustomDrawerContentComponent = (props) => (
     <Container>
@@ -41,12 +42,27 @@ export const Drawer = DrawerNavigator({
             }
         }
     },
-    Settings: {
-        screen: Verify,
+    Result: {
+        screen: Result,
+        navigationOptions:{
+            title: 'Search Result',
+            headerStyle: {
+                backgroundColor: '#ED1E4C'
+            }
+        }
     },
+    Sample: {
+        screen: Sample,
+        navigationOptions: {
+            title: 'Sample',
+            headerStyle: {
+                backgroundColor: '#ED1E4C'
+            }
+        }
+    }
 },
     {
-        InitialRouteName: 'Home',
+        InitialRouteName: 'Result',
         drawerWidth: 250,
         drawerPosition: 'left',
         contentComponent: CustomDrawerContentComponent,

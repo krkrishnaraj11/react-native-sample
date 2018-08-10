@@ -13,11 +13,22 @@ export default class App extends React.Component {
   }
 
   retrieveData() {
+    var uKey;
     try {
-      console.log('hi');
-      var value = AsyncStorage.getItem('key');
-      this.state.signedIn = true;
-      // console.log(value);
+      AsyncStorage.getItem('key').then((userKey) =>{
+        uKey = JSON.parse(userKey);
+        for(i in uKey){
+          if(uKey[i] == 'ok'){
+            this.setState({signedIn: true});
+          }
+        }
+      })
+      // console.log(uKey);
+      // for(i in uKey){
+      //   if(uKey[i]=='ok'){
+      //     this.setState({signedIn: true});
+      //   }
+      // }
     } catch (error) {
       console.log("Error retrieving data" + error);
     }

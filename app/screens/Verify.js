@@ -25,15 +25,17 @@ export default class Verify extends Component{
         axios.get('https://owbro.com/RestAPI/validatelogin?brokermobile='+n+'&otp='+this.state.otp)
         .then( res => {
             ar = res.data;
+            console.log(ar);
+            var KEY = 'key';
             for(var i in ar)
             {
                 if(i == "loginkey"){
-                    AsyncStorage.setItem('key',ar[i],() =>{
-                        AsyncStorage.getItem('key',(err,result) => {
-                            alert(result);
-                        })
-                    });
-                    alert(AsyncStorage.getItem('key'));
+                    console.log(res.data);
+                    AsyncStorage.setItem(KEY,JSON.stringify(res.data))
+                    AsyncStorage.getItem(KEY).then((userKey) =>{
+                        const uKey = JSON.parse(userKey);
+                        console.log(uKey);
+                    })
                 }
                 if(i == 0){
                     this.props.navigation.navigate('Drawer');}
