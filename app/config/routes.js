@@ -51,15 +51,15 @@ export const Drawer = DrawerNavigator({
             }
         }
     },
-    Sample: {
-        screen: Sample,
-        navigationOptions: {
-            title: 'Sample',
-            headerStyle: {
-                backgroundColor: '#ED1E4C'
-            }
-        }
-    }
+    // Sample: {
+    //     screen: Sample,
+    //     navigationOptions: {
+    //         title: 'Sample',
+    //         headerStyle: {
+    //             backgroundColor: '#ED1E4C'
+    //         }
+    //     }
+    // }
 },
     {
         InitialRouteName: 'Result',

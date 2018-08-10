@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Card, Icon, CardItem, Text, Body, View, Left, Button } from 'native-base';
 import {AsyncStorage} from 'react-native';
+import axios from "axios";
 export default class Result extends Component {
   constructor(props){
     super(props);
@@ -15,11 +16,23 @@ export default class Result extends Component {
         uk = JSON.parse(userKey);
         this.setState({userKey: uk['loginkey']});
       })
-      console.log(this.state.userKey);
+    }
+
+    fetchJSON = () => {
+      let userkey = this.state.userKey;
+      let { params } = this.props.navigation.state;
+      let local = params ? params.locality : null;
+      let listingtype = params ? params.listing : null;
+      let bedroom = params ? params.bed : null;
+      axios.get('https://owbro.com/RestAPI/owbrosearch?userkey='+userkey+'&area_unit=SQFT&main_cat=1&max_size=&start_date=&incentive_given=&facingtxt2=&isactive=1&lease_end_date=&category_id=3&enteredby=&max_floor=&end_date=&facingtxt1=&listingtype='+listingtype+'&propfurnish=&number_bedroom='+bedroom+'&min_size=&min_floor=&app_version=3.2.3(17)&lease_start_date=&area='+local)
+      .then( res => {
+        console.log(res);
+      })
     }
   render() {
-      this.fetchUserKey();
-      let navigation = this.props.navigation;
+    this.fetchUserKey();
+    this.fetchJSON();
+    let navigation = this.props.navigation;
     return (
       <Container>
         <Header style={{color: '#ED1E4C'}}>

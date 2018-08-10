@@ -14,6 +14,7 @@ import {AsyncStorage} from 'react-native';
 import { Button, Container, Header, Content, Left, Form, Item, Picker, Label } from 'native-base'
 //custom components imports 
 import MultiSelect from 'react-native-multiple-select';
+import Result from '../screens/searchResult';
 
 class Search extends Component {
 
@@ -137,16 +138,34 @@ class Search extends Component {
   }
 
   fetchResult = () => {
-    console.log(this.state.selectedItems);
     let l_id = this.state.selectedItems;
     let locality = this.state.data;
-    let loc_list = [];
-    let temp = '';
+    let loc = '';
     for(i in l_id){
       let id = l_id[i];
-      // loc_list.push(locality[id]['name']);
+      loc=loc+locality[id]['name']+",";
     }
-    console.log(loc_list);
+    console.log(loc);
+    
+    let listingtype = '';
+    if(this.state.selectedIndex1 == 1){
+      listingtype = 'Rent'
+    }
+    else if(this.state.selectedIndex1 == 0){
+      listingtype = 'Sell'
+    }
+    console.log(listingtype);
+
+    let bedroom = 0;
+    bedroom = this.state.selectedIndex4 + 1;
+    console.log(bedroom);
+
+
+    this.props.navigation.navigate('Result',{
+      locality: loc,
+      listing: listingtype,
+      bed: bedroom
+    })
   }
   render() {
     this.fetchData();
